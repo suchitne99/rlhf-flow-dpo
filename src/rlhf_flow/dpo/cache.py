@@ -13,6 +13,8 @@ class ReferenceLogProbCache:
         k = hashlib.sha256(f"{prompt}|{chosen}|{rejected}".encode("utf-8")).hexdigest()
         return self._cache.get(k)
 
-# Blake2b fallback
+    def size(self) -> int:
+        return len(self._cache)
 
-# LMDB storage
+    def __len__(self) -> int:
+        return len(self._cache)
